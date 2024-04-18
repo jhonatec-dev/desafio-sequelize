@@ -1,4 +1,9 @@
-version: '3'
+version: "3.9"
+
+networks:
+    app_net:
+      driver: bridge
+
 services:
   backend:
     build: ./backend
@@ -8,14 +13,20 @@ services:
       - 3001:3001
     depends_on:
       - mysql
+    networks:
+      - app_net
 
   mysql:
     image: mysql:latest
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
       - MYSQL_DATABASE=BOOKS
       - MYSQL_USER=root_total
       - MYSQL_PASSWORD=password
+    hostname: mysql
     ports:
       - 3306:3306
-    
+    networks:
+      - app_net
+

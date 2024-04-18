@@ -16,3 +16,6 @@ services:
       - MYSQL_DATABASE=BOOKS
       - MYSQL_USER=root_total
       - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+    

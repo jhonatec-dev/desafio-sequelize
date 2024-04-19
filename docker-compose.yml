@@ -24,7 +24,6 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=MANUAL
-    hostname: mysql
     ports:
       - 3306:3306
     networks:

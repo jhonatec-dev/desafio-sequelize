@@ -1,6 +1,9 @@
 import cors from "cors";
 import express, { Application } from "express";
+import { DataTypes } from "sequelize";
 import { sequelize } from "./config/sequelize";
+import db from "./database/models";
+import users from "./database/models/users";
 import { PersonModel } from "./models/person.model";
 
 const PORT = 3001;
@@ -43,6 +46,24 @@ app.post("/new-user", async (req, res) => {
   } catch (error) {
     res.status(500).send({
       message: "Unable to create a new person",
+      error,
+    });
+  }
+})
+
+app.post("/new-migrate", async (req, res) => {
+  const { name, age } = req.body;
+  try {
+    console.log("seq working", sequelize.config)
+    console.log("\n\n\n\n")
+    console.log("seq not working", db.sequelize.config)
+
+    const model = users(db.sequelize, DataTypes);
+    const newPerson = await model.create({name, age})
+    res.status(201).send(newPerson);
+  } catch (error) {
+    res.status(500).send({
+      message: "Unable to create a new user",
       error,
     });
   }

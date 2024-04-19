@@ -1,8 +1,8 @@
 version: "3.9"
 
 networks:
-    app_net:
-      driver: bridge
+  app_net:
+    driver: bridge
 
 services:
   backend:
@@ -21,12 +21,11 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
-      - MYSQL_DATABASE=TEST
-      - MYSQL_USER=root_total
+      - MYSQL_USER=user
       - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=MANUAL
     hostname: mysql
     ports:
       - 3306:3306
     networks:
       - app_net
-

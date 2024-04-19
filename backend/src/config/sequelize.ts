@@ -3,7 +3,6 @@ import { Sequelize } from "sequelize";
 
 configDotenv(); // Load .env file
 
-
 // Database connection MySql
 export const sequelize = new Sequelize(
   process.env.DB_NAME as string,

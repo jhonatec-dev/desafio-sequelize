@@ -21,7 +21,7 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
-      - MYSQL_DATABASE=BOOKS
+      - MYSQL_DATABASE=TEST
       - MYSQL_USER=root_total
       - MYSQL_PASSWORD=password
     hostname: mysql

@@ -1,5 +1,5 @@
 import { NewEntity } from "../interfaces/NewEntity";
-import { Person } from "../interfaces/Person";
+import { Person } from "../interfaces/User";
 
 class PersonService {
   private readonly personModel;

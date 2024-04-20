@@ -2,6 +2,8 @@
 
 Let's try to create an API using Docker/Node/TypeScript and Sequelize
 
+# Atenção: em breve lançarei mais atualizações no README e no projeto com as duas formas de se usar o Sequelize
+
 # Requisitos:
 
 - Docker

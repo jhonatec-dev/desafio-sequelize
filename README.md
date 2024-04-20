@@ -2,6 +2,34 @@
 
 Let's try to create an API using Docker/Node/TypeScript and Sequelize
 
+# Requisitos:
+
+- Docker
+- Não ter amor a vida pra gostar de Sequelize 😶‍🌫️
+- Ter esperanças de um futuro melhor ao seguir essas dicas 😇
+
+# Colocando o ambiente pra rodar
+
+1. Clone o projeto
+
+```bash
+git clone git@github.com:jhonatec-dev/desafio-sequelize.git
+```
+
+2. Na pasta do projeto rode o arquivo docker-compose.yml
+
+```bash
+docker compose -f "docker-compose.yml" up -d --build
+```
+
+3. Espere com paciência a subir o DB e o BACK 🥸
+
+4. Code como se não houvesse amanhã! 🤓
+
+---
+---
+---
+
 # Como configurar o Sequelize para Migrations
 
 ## 1. Instale o CLI também (além do sequelize e mysql2)
@@ -10,7 +38,7 @@ Let's try to create an API using Docker/Node/TypeScript and Sequelize
 npm i sequelize-cli
 ```
 
-## 2. Crie um arquivo `.sequelizerc``
+## 2. Crie um arquivo `.sequelizerc`
 
 > Aqui ele vai informar pro CLI que dentro da pasta `src/database` é o local onde ele deverá gerar os arquivos
 > database.json é o arquivo de configuração, daqui a pouco vamos falar dele
@@ -132,7 +160,6 @@ if (config.use_env_variable) {
 Agora vamos a um exemplo de código usando o model da pasta `src/database/models`:
 
 ```typescript
-
 import { DataTypes } from "sequelize";
 import db from "./database/models"; // está no arquivo src/database/models/index.js
 import user from "./database/models/user"; // model gerado ao rodar o sequelize-cli model:generate

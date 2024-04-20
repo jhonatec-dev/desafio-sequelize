@@ -3,7 +3,7 @@ import express, { Application } from "express";
 import { DataTypes } from "sequelize";
 import { sequelize } from "./config/sequelize";
 import db from "./database/models";
-import users from "./database/models/users";
+import user from "./database/models/user";
 import { PersonModel } from "./models/person.model";
 
 const PORT = 3001;
@@ -58,7 +58,7 @@ app.post("/new-migrate", async (req, res) => {
     console.log("\n\n\n\n")
     console.log("seq not working", db.sequelize.config)
 
-    const model = users(db.sequelize, DataTypes);
+    const model = user(db.sequelize, DataTypes);
     const newPerson = await model.create({name, age})
     res.status(201).send(newPerson);
   } catch (error) {

@@ -4,7 +4,7 @@ Let's try to create an API using Docker/Node/TypeScript and Sequelize
 
 # Como configurar o Sequelize para Migrations
 
-## 1. Instale o CLI também
+## 1. Instale o CLI também (além do sequelize e mysql2)
 
 ```bash
 npm i sequelize-cli
@@ -156,3 +156,5 @@ app.post("/user", async (req, res) => {
 ```
 
 # A P R O V E I T E
+
+## Curtiu? Deixe uma ⭐️ no Repositório pra fortalecer mais conteúdos como esse!

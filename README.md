@@ -1,12 +1,11 @@
 # Desafio: Sequelize sem sequela 🤯
 
-Let's try to create an API using Docker/Node/TypeScript and Sequelize
-
-# Atenção: em breve lançarei mais atualizações no README e no projeto com as duas formas de se usar o Sequelize
+Nesta branch, vamos criar os arquivos na unha com TypeScript 💙
 
 # Requisitos:
 
-- Docker
+- Docker 🐋
+- Node 💚
 - Não ter amor a vida pra gostar de Sequelize 😶‍🌫️
 - Ter esperanças de um futuro melhor ao seguir essas dicas 😇
 
@@ -29,18 +28,18 @@ docker compose up -d --build
 4. Code como se não houvesse amanhã! 🤓
 
 ---
----
----
 
-# Como configurar o Sequelize para Migrations
+# Criando os arquivos
 
-## 1. Instale o CLI também (além do sequelize e mysql2)
+## 1. Crie um arquivo para servir de conexão
 
-```bash
-npm i sequelize-cli
-```
+Criei meu arquivo em `src/config/database.ts`
 
-## 2. Crie um arquivo `.sequelizerc`
+## 2. Crie sua Model User `src/models/User.model.ts`
+Aqui usei a documentação do Sequelize para criar os campos usando como base minha Interface já definida para uso na aplicação
+
+## 3. Crie sua Model Book `src/models/Books.model.ts`
+Aqui usei a documentação do Sequelize para criar os campos usando como base minha Interface já definida para uso na aplicação
 
 > Aqui ele vai informar pro CLI que dentro da pasta `src/database` é o local onde ele deverá gerar os arquivos
 > database.json é o arquivo de configuração, daqui a pouco vamos falar dele

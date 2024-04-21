@@ -1,10 +1,10 @@
 import cors from "cors";
 import express, { Application } from "express";
 import { DataTypes } from "sequelize";
-import { sequelize } from "./config/sequelize";
+import { sequelize } from "./config/database";
 import db from "./database/models";
 import user from "./database/models/user";
-import { PersonModel } from "./models/person.model";
+import { PersonModel } from "./models/User.model";
 
 const PORT = 3001;
 

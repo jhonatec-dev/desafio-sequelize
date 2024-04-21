@@ -1,16 +1,16 @@
 // Gerar Model para Sequelize usando o type Person
-import { sequelize } from "../config/sequelize";
+import { sequelize } from "../config/database";
 import { User } from "../interfaces/User";
 
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 
-class PersonModel extends Model<InferAttributes<PersonModel>, InferCreationAttributes<PersonModel>> implements User {
+class UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> implements User {
   declare id: CreationOptional<number>;
   declare name: string;
   declare age: number;
 }
 
-PersonModel.init(
+UserModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,10 +28,11 @@ PersonModel.init(
   },
   {
     sequelize,
-    tableName: "users",
+    tableName: "Users",
   }
 );
 
 
 
-export { PersonModel };
+export { UserModel };
+

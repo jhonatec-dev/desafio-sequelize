@@ -1,12 +1,13 @@
 # Desafio: Sequelize sem sequela 🤯
 
-Let's try to create an API using Docker/Node/TypeScript and Sequelize
+## Branch Sequelize com CLI
 
-# Atenção: em breve lançarei mais atualizações no README e no projeto com as duas formas de se usar o Sequelize
+Vamos usar as migrations e configurar o ambiente com calma
 
 # Requisitos:
 
-- Docker
+- Docker 🐋 (opcional)
+- Node 💚
 - Não ter amor a vida pra gostar de Sequelize 😶‍🌫️
 - Ter esperanças de um futuro melhor ao seguir essas dicas 😇
 
@@ -24,12 +25,10 @@ git clone git@github.com:jhonatec-dev/desafio-sequelize.git
 docker compose up -d --build
 ```
 
-3. Espere com paciência a subir o DB e o BACK 🥸
+> Espere com paciência a subir os Containers 🥸
 
 4. Code como se não houvesse amanhã! 🤓
 
----
----
 ---
 
 # Como configurar o Sequelize para Migrations
@@ -106,10 +105,68 @@ Rode o comando de exemplo:
 
 ```bash
 npx sequelize-cli model:generate --name User --attributes name:string,age:integer
+
 ```
 
-Com isso, alguns arquivos serão criados, um na pasta `src/database/migrations` com o nome da tabela users
+Com isso, alguns arquivos serão criados, um na pasta `src/database/migrations` com o nome da tabela Users
 Outro na pasta `src/database/models` para ser usado mais tarde na aplicação
+
+## 5.1 Crie a Migration Book
+
+Rode o comando:
+
+```bash
+npx sequelize-cli model:generate --name Book --attributes title:string
+
+```
+
+Agora vamos alterar os arquivos, começando com a Migration de Books na pasta `src/database/migrations/book.js`:
+
+```js
+//... RESTO DO ARQUIVO ...
+      idUser: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'User',
+          key: 'id'
+        }
+      },
+
+//... RESTO DO ARQUIVO ...
+```
+
+> Assim, o campo passa a ser obrigatório e faz referência à tabela de Users, onde o campo `Book.idUser = User.id`
+
+### Alterando os Models
+
+Vamos começar com a Model de Book `src/database/models/book.js`:
+
+```js
+// ... RESTO DO ARQUIVO ...
+    static associate(models) {
+      // define association here
+      Book.belongsTo(models.User, {
+        foreignKey: 'idUser',
+        as: 'user'
+      });
+    }
+// ... RESTO DO ARQUIVO ...
+```
+
+Por fim, o Model de User `src/database/models/user.js`:
+
+```js
+// ... RESTO DO ARQUIVO ...
+       static associate(models) {
+      // define association here
+      User.hasMany(models.Book, {
+        foreignKey: 'idUser',
+        as: 'books'
+      });
+    }
+// ... RESTO DO ARQUIVO ...
+```
 
 ## 6. Rode as Migrations
 
@@ -119,7 +176,7 @@ Comando:
 npx sequelize-cli db:migrate
 ```
 
-# O PULO DO GATO ⏏️ 🐈
+# O PULO DO GATO ⏏️ 🐈 (se der problema usando Docker 🐋)
 
 Provavelmente seu banco estará criado agora, com a tabela(s) da pasta de migrations... Mas quando você chamar na aplicação, a coisa dá erro como se o `HOST` do arquivo `.json` estivesse errado. Mas não está!
 
@@ -137,21 +194,18 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/database.json")[env];
 const db = {};
 
-// Jump of the cat ⏏️ 🐈
-// manualmente setar o host de dentro do objeto config como 'mysql''
-config.host = "mysql";
-// jump finished
+// Em caso de Docker 🐋🐋
+const dotenv = require('dotenv');
+dotenv.config();
+// nome do serviço do banco de dados no docker-compose.yml
+// ou no arquivo .env (por isso o dotenv.config())
+config.host = process.env.DB_HOST; 
 
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 // .... RESTO DO ARQUIVO ....
@@ -183,6 +237,10 @@ app.post("/user", async (req, res) => {
   }
 });
 ```
+
+> O arquivo `src/server.ts` já contém a forma de uso com rotas definidas de forma bem simples e objetiva.
+>
+> Fique à vontade para adaptar com sua realidade.
 
 # A P R O V E I T E
 

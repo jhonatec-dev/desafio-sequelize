@@ -8,10 +8,11 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "vitest",
-    "db:create": "npx sequelize-cli db:create",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "db:seed": "npx sequelize-cli db:seed:all",
-    "db:drop": "npx sequelize-cli db:drop"
+    "init": "npx sequelize-cli init",
+    "create": "npx sequelize-cli db:create",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "drop": "npx sequelize-cli db:drop"
   },
   "keywords": [],
   "author": "",
@@ -39,10 +40,6 @@
     "typescript": "^5.4.5",
     "vitest": "^1.5.0"
   },
-  "files": [
-    "es",
-    "lib"
-  ],
   "types": "./lib/index.d.ts",
   "jsnext:main": "./es/index.js",
   "module": "./es/index.js",

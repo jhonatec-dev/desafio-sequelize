@@ -1,6 +1,6 @@
 # Desafio: Sequelize sem sequela 🤯
 
-Nesta branch, vamos criar os arquivos na unha com TypeScript 💙
+# Branch manual com TypeScript 💙
 
 # Requisitos:
 

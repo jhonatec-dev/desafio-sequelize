@@ -1,22 +1,15 @@
-version: "3.9"
-
-networks:
-  app_net:
-    driver: bridge
-
 services:
   backend:
     build: ./backend
     volumes:
       - ./backend:/app
+      - /app/node_modules
     ports:
       - 3001:3001
     depends_on:
-      - mysql
-    networks:
-      - app_net
+      - db
 
-  mysql:
+  db:
     image: mysql:latest
     restart: always
     environment:
@@ -26,5 +19,3 @@ services:
       - MYSQL_DATABASE=MANUAL
     ports:
       - 3306:3306
-    networks:
-      - app_net

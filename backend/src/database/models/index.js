@@ -10,7 +10,7 @@ const config = require(__dirname + "/../config/database.json")[env];
 const db = {};
 
 // JUMP OF THE CAT
-config.host = "mysql";
+config.host = "db";
 
 let sequelize;
 if (config.use_env_variable) {

@@ -54,10 +54,6 @@ app.post("/new-user", async (req, res) => {
 app.post("/new-migrate", async (req, res) => {
   const { name, age } = req.body;
   try {
-    console.log("seq working", sequelize.config)
-    console.log("\n\n\n\n")
-    console.log("seq not working", db.sequelize.config)
-
     const model = user(db.sequelize, DataTypes);
     const newPerson = await model.create({name, age})
     res.status(201).send(newPerson);

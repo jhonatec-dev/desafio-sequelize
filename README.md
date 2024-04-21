@@ -21,7 +21,7 @@ git clone git@github.com:jhonatec-dev/desafio-sequelize.git
 2. Na pasta do projeto rode o arquivo docker-compose.yml
 
 ```bash
-docker compose -f "docker-compose.yml" up -d --build
+docker compose up -d --build
 ```
 
 3. Espere com paciência a subir o DB e o BACK 🥸

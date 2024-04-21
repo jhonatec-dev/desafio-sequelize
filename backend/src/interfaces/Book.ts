@@ -5,7 +5,7 @@ import z from "zod";
 export const BookSchema = z.object({
     id: z.number().optional(),
     title: z.string(),
-    idUser: z.number(),
+    userId: z.number(),
 });
 
 export type Book = z.infer<typeof BookSchema>;

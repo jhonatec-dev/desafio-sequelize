@@ -16,7 +16,7 @@ class BookModel
 {
   declare id: CreationOptional<number>;
   declare title: string;
-  declare idUser: number;
+  declare userId: number;
 }
 
 BookModel.init(
@@ -30,7 +30,7 @@ BookModel.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    idUser: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

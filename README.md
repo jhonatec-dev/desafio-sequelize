@@ -116,7 +116,7 @@ Outro na pasta `src/database/models` para ser usado mais tarde na aplicação
 Rode o comando:
 
 ```bash
-npx sequelize-cli model:generate --name Book --attributes title:string
+npx sequelize-cli model:generate --name Book --attributes title:string,userId:integer
 
 ```
 
@@ -124,11 +124,11 @@ Agora vamos alterar os arquivos, começando com a Migration de Books na pasta `s
 
 ```js
 //... RESTO DO ARQUIVO ...
-      idUser: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'User',
+          model: 'Users',
           key: 'id'
         }
       },
@@ -147,7 +147,7 @@ Vamos começar com a Model de Book `src/database/models/book.js`:
     static associate(models) {
       // define association here
       Book.belongsTo(models.User, {
-        foreignKey: 'idUser',
+        foreignKey: 'userId',
         as: 'user'
       });
     }
@@ -161,7 +161,7 @@ Por fim, o Model de User `src/database/models/user.js`:
        static associate(models) {
       // define association here
       User.hasMany(models.Book, {
-        foreignKey: 'idUser',
+        foreignKey: 'userId',
         as: 'books'
       });
     }
@@ -219,9 +219,17 @@ Agora vamos a um exemplo de código usando o model da pasta `src/database/models
 import { DataTypes } from "sequelize";
 import db from "./database/models"; // está no arquivo src/database/models/index.js
 import user from "./database/models/user"; // model gerado ao rodar o sequelize-cli model:generate
+import book from "./database/models/book"; // model gerado ao rodar o sequelize-cli model:generate
+
+// Defining the model passing the sequelize instance and the data types
+const UserModel = user(db.sequelize, DataTypes);
+const BooksModel = book(db.sequelize, DataTypes);
+// Defining Relationship (because somehow doesn't work in associate alone)
+UserModel.hasMany(BooksModel, { as: "books" });
+BooksModel.belongsTo(UserModel, { as: "user" });
 
 // método de exemplo já usando um método POST na rota /user
-app.post("/user", async (req, res) => {
+app.post("/users", async (req, res) => {
   const { name, age } = req.body;
   try {
     // padrão do arquivo gerado pelo CLI é receber um objeto do tipo Sequelize e um DataTypes
@@ -239,6 +247,8 @@ app.post("/user", async (req, res) => {
 ```
 
 > O arquivo `src/server.ts` já contém a forma de uso com rotas definidas de forma bem simples e objetiva.
+>
+>Execute com `npm run dev`
 >
 > Fique à vontade para adaptar com sua realidade.
 

@@ -112,6 +112,12 @@ BookModel.belongsTo(UserModel, { as: "user", foreignKey: "userId" });
 // ... RESTO DO ARQUIVO ...
 ```
 
+> O arquivo `src/server.ts` já contém a forma de uso com rotas definidas de forma bem simples e objetiva.
+>
+>Execute com `npm run dev`
+>
+> Fique à vontade para adaptar com sua realidade.
+
 # A P R O V E I T E
 
 ## Curtiu? Deixe uma ⭐️ no Repositório pra fortalecer mais conteúdos como esse!

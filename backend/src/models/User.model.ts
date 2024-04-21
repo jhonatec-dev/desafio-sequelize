@@ -1,10 +1,19 @@
-// Gerar Model para Sequelize usando o type Person
+// Gerar Model para Sequelize usando o type User
 import { sequelize } from "../config/database";
 import { User } from "../interfaces/User";
 
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+} from "sequelize";
 
-class UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> implements User {
+class UserModel
+  extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>>
+  implements User
+{
   declare id: CreationOptional<number>;
   declare name: string;
   declare age: number;
@@ -31,8 +40,6 @@ UserModel.init(
     tableName: "Users",
   }
 );
-
-
 
 export { UserModel };
 

@@ -4,6 +4,12 @@ import express, { Application } from "express";
 import { BookModel } from "./models/Book.model";
 import { UserModel } from "./models/User.model";
 
+// Sincronizando o Sequelize com o banco de dados
+import { sequelize } from "./config/database";
+sequelize.sync();
+UserModel.hasMany(BookModel, { as: "books", foreignKey: "userId" });
+BookModel.belongsTo(UserModel, { as: "user", foreignKey: "userId" });
+
 // Definindo a porta do servidor
 const PORT = 3001;
 const app: Application = express();

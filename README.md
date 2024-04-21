@@ -7,12 +7,12 @@
  ### Usando sequelize-cli
 Nesta branch será dado foco na geração dos arquivos de forma automática pelo console
 
-[Clique aqui](/tree/sequelize-cli)
+[Clique aqui](https://github.com/jhonatec-dev/desafio-sequelize/tree/sequelize-cli)
 
 ### Usando Sequelize de forma manual
 Nesta branch, criarei o arquivo de Model e usarei alguns passos para sincronizar com o banco
 
-[Clique aqui](/tree/manual)
+[Clique aqui](https://github.com/jhonatec-dev/desafio-sequelize/tree/manual)
 
 ### Em todas as branches
 Criarei uma tabela de Users
